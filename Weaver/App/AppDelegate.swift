@@ -1,4 +1,5 @@
 import AppKit
+import Sparkle
 
 @main
 @MainActor
@@ -6,6 +7,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private let hotKeys = HotKeyCenter()
     private let dragDock = DragDockController()
+    /// Sparkle checks the appcast daily; it only starts when the build carries a public key.
+    private let updater = SPUStandardUpdaterController(startingUpdater: AppDelegate.hasUpdateKey,
+                                                        updaterDelegate: nil, userDriverDelegate: nil)
+
+    static var hasUpdateKey: Bool {
+        !((Bundle.main.infoDictionary?["SUPublicEDKey"] as? String) ?? "").isEmpty
+    }
     private var logLines: [String] = []
 
     static func main() {
@@ -77,6 +85,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         menu.addItem(withTitle: "Don't Arrange This App", action: #selector(toggleExcludeFrontmost), keyEquivalent: "")
         menu.addItem(withTitle: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
+        menu.addItem(withTitle: "Check for Updates…", action: #selector(checkForUpdates), keyEquivalent: "")
         let ax = menu.addItem(withTitle: AXPermission.isTrusted ? "Accessibility: allowed" : "Accessibility: not allowed (click to open)",
                               action: #selector(openAccessibility), keyEquivalent: "")
         ax.isEnabled = true
@@ -154,6 +163,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func floatAll() { WindowManager.shared.floatAll() }
 
     @objc private func openSettings() { SettingsWindowController.shared.show() }
+    @objc private func checkForUpdates() { updater.updater.checkForUpdates() }
 
     /// The app the user was just using (not Weaver) gets added to, or removed from, the leave-alone list.
     @objc private func toggleExcludeFrontmost() {

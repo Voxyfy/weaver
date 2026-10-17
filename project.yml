@@ -5,11 +5,17 @@ options:
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.6.0"
 settings:
   base:
     SWIFT_VERSION: "6.0"
     SWIFT_STRICT_CONCURRENCY: minimal
-    MARKETING_VERSION: "0.1.0"
+    MARKETING_VERSION: "1.0.0"
+    # Sparkle's EdDSA public key; the private key lives in the publisher's Keychain (scripts/release.sh).
+    SPARKLE_PUBLIC_ED_KEY: "nc1m3hKCzQljUfS93/X1AEZ7iGXeml1/lSTgs3LZyiI="
     CURRENT_PROJECT_VERSION: "1"
     DEVELOPMENT_TEAM: 4U5QVH3U6A
     CODE_SIGN_STYLE: Automatic
@@ -23,6 +29,8 @@ targets:
     platform: macOS
     sources:
       - Weaver
+    dependencies:
+      - package: Sparkle
     entitlements:
       path: Weaver/Resources/Weaver.entitlements
       properties: {}
@@ -36,6 +44,10 @@ targets:
         LSUIElement: true
         LSApplicationCategoryType: public.app-category.utilities
         NSHumanReadableCopyright: "© 2026 Batuhan Haymana · MIT License"
+        SUFeedURL: https://voxyfy.github.io/weaver/appcast.xml
+        SUPublicEDKey: $(SPARKLE_PUBLIC_ED_KEY)
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 86400
         CFBundleURLTypes:
           - CFBundleURLName: com.voxyfy.weaver
             CFBundleURLSchemes: [weaver]
