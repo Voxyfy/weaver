@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/screenshot.png" width="900" alt="Weaver with a docked window on the right and the Desktop scaled beside it">
+  <img src="docs/assets/hero.png" width="900" alt="Weaver: an editor docked left, the Desktop cell in the middle with floating windows scaled down, a tab group and a second window stacked on the right">
 </p>
 
 ---
