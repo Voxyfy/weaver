@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weaver — a nesting window manager for macOS</title>
+<meta name="description" content="Weaver docks your Mac windows beside each other, nests splits inside splits and zooms into the part you need. Free and open source, MIT.">
+<link rel="icon" href="assets/icon.png">
+<style>
+:root{--bg:#0E2A1F;--fg:#F2F7F3;--muted:#9FB8A9;--line:rgba(255,255,255,.08);--accent:#F2C94C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
+a{color:var(--fg)}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px}
+.hero{text-align:center;padding:48px 0 24px}
+.hero img.icon{width:128px;height:128px;border-radius:28px}
+h1{font-size:52px;line-height:1.05;letter-spacing:-.03em;margin:18px 0 12px}
+h1 span{color:var(--accent)}
+.lead{font-size:20px;color:#CFE0D5;max-width:640px;margin:0 auto}
+.cta{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#1b1b1b;font-weight:600}
+.fine{color:var(--muted);font-size:14px;margin-top:12px}
+.shot{display:block;width:100%;margin:44px auto 0;border-radius:14px;border:1px solid var(--line);background:#081a12}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:30px;letter-spacing:-.02em;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px}
+.grid h3{font-size:17px;margin:0 0 6px}
+.grid p,section p{color:#CFE0D5;margin:0}
+kbd{background:rgba(255,255,255,.1);padding:1px 6px;border-radius:5px;font:13px -apple-system,system-ui}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:600px){h1{font-size:38px}.lead{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><strong>Weaver</strong><span><a href="#tr">Türkçe</a><a href="https://github.com/Voxyfy/weaver">Source</a><a href="https://github.com/Voxyfy/weaver/issues">Issues</a></span></nav>
+
+<div class="hero">
+  <img class="icon" src="assets/icon.png" alt="Weaver app icon">
+  <h1>Windows that <span>nest</span>.</h1>
+  <p class="lead">Dock windows beside each other, put splits inside splits, zoom into the part you need and back out to everything. Weaver arranges the real windows of your Mac apps. Free, open source, no account.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/Voxyfy/weaver/releases/latest/download/Weaver.dmg">Download for macOS</a>
+    <a class="btn" href="https://github.com/Voxyfy/weaver">View on GitHub</a>
+  </div>
+  <p class="fine">MIT License · macOS 14 or later · needs the Accessibility permission</p>
+  <img class="shot" src="assets/screenshot.png" alt="Weaver with a docked window and the Desktop scaled beside it">
+</div>
+
+<section>
+  <h2>Five moves.</h2>
+  <div class="grid">
+    <div><h3>Dock</h3><p>Drag a window to a screen edge and it docks; the Desktop keeps the rest, scaled down between the docked windows.</p></div>
+    <div><h3>Nest</h3><p>Drop a window on another window's edge to split that cell. Splits inside splits, as deep as you like.</p></div>
+    <div><h3>Tabs</h3><p>Drop a window on another's middle and pause: a tab group, with windows from any apps under one strip.</p></div>
+    <div><h3>Resize</h3><p>Drag the gap between two windows, or a window's own edge; both neighbours give way.</p></div>
+    <div><h3>Zoom</h3><p>Double-click a title bar to fill the screen with that window, <kbd>⌃⌥Space</kbd> for everything, <kbd>⌃⌥←→</kbd> for the neighbouring cell, <kbd>⌃⌥[ ]</kbd> for back and forward.</p></div>
+    <div><h3>Leave</h3><p>Float a window and it returns to where it was. Quit, and every window is back in its place.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Built right.</h2>
+  <p>Native Swift and AppKit. Only the Accessibility permission, used to move and resize windows and for nothing else. No network, no analytics, no account. The whole thing is on GitHub under the MIT License, so you can read it, build it and change it.</p>
+</section>
+
+<section id="tr" lang="tr">
+  <h2>Türkçe</h2>
+  <p><strong>İç içe geçen pencereler.</strong> Weaver, Mac uygulamalarınızın gerçek pencerelerini düzenler: pencereyi ekran kenarına sürükleyin kilitlensin, başka bir pencerenin kenarına bırakın o hücre bölünsün, ortasına bırakıp bekleyin sekme grubu olsun. Aradaki boşluğu çekince iki komşu birlikte boyutlanır; başlık çubuğuna çift tıklayınca pencere ekranı kaplar, ⌃⌥Space ile her şey geri gelir.</p>
+  <p style="margin-top:14px">Serbest bıraktığınız pencere eski yerine döner; uygulamadan çıkınca da her şey yerine gider. Yalnızca Erişilebilirlik izni ister, ağa çıkmaz, hesap istemez. Kaynak kodu MIT lisansıyla GitHub'da.</p>
+  <p style="margin-top:14px"><a class="btn primary" href="https://github.com/Voxyfy/weaver/releases/latest/download/Weaver.dmg">macOS için indir</a></p>
+</section>
+
+<footer>© 2026 Batuhan Haymana · Voxyfy · MIT License · <a href="https://github.com/Voxyfy/weaver">GitHub</a></footer>
+</div>
+</body>
+</html>

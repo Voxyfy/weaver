@@ -1,0 +1,60 @@
+name: Weaver
+options:
+  bundleIdPrefix: com.voxyfy
+  developmentLanguage: en
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: 4U5QVH3U6A
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_HARDENED_RUNTIME: YES
+    # Xcode's debug-dylib packaging (stub executable + Weaver.debug.dylib) is not accepted by
+    # macOS 27's Accessibility permission; AXIsProcessTrusted stays false. One-piece binary instead.
+    ENABLE_DEBUG_DYLIB: NO
+targets:
+  Weaver:
+    type: application
+    platform: macOS
+    sources:
+      - Weaver
+    entitlements:
+      path: Weaver/Resources/Weaver.entitlements
+      properties: {}
+    info:
+      path: Weaver/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Weaver
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSMinimumSystemVersion: "14.0"
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: "© 2026 Batuhan Haymana · MIT License"
+        CFBundleURLTypes:
+          - CFBundleURLName: com.voxyfy.weaver
+            CFBundleURLSchemes: [weaver]
+  WeaverTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - WeaverTests
+    dependencies:
+      - target: Weaver
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Weaver:
+    build:
+      targets:
+        Weaver: all
+        WeaverTests: [test]
+    test:
+      targets:
+        - WeaverTests
